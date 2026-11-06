@@ -3,8 +3,14 @@ import { existsSync, readFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const root = resolve(dirname(fileURLToPath(import.meta.url)), '..', 'dist');
+const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const root = join(repoRoot, 'dist');
 const pages = ['index.html', 'sobre.html', 'especialidades.html', 'contato.html'];
+
+const vercelConfigPath = join(repoRoot, 'vercel.json');
+assert.ok(existsSync(vercelConfigPath), 'vercel.json não existe na raiz do repositório');
+const vercelConfig = JSON.parse(readFileSync(vercelConfigPath, 'utf8'));
+assert.equal(vercelConfig.outputDirectory, 'dist', 'Vercel deve publicar a pasta dist');
 
 for (const page of pages) {
   const file = join(root, page);
