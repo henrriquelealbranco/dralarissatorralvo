@@ -13,6 +13,16 @@ python -m http.server 4173 --bind 127.0.0.1
 
 Depois abra `http://127.0.0.1:4173/index.html`.
 
+## Publicar pela Vercel
+
+Ao importar este repositório na Vercel, use:
+
+- **Framework Preset:** Other
+- **Root Directory:** `dist`
+- **Build Command:** deixe em branco
+
+A Vercel publicará diretamente os mesmos arquivos estáticos usados na validação local, sem recompilar ou alterar o layout.
+
 ## Onde editar
 
 - Página inicial: `dist/index.html`
